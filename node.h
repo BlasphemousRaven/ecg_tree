@@ -7,13 +7,14 @@
 
 class node{
     private:
+    static int node_id;
     std::string name;
     int nr_children = 0;
     std::vector<node*> *children = new std::vector<node*>();
 
     public:
     virtual ~node();
-    node(const std::string&);
+    node(const std::string& name="");
     std::string get_name();
     
     void set_name(std::string new_name);

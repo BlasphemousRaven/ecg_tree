@@ -1,6 +1,25 @@
 #include "node.h"
 #include <string>
+#include <sstream>
+#include <iostream>
 
+int node::node_id = 0;
+
+node::node(const std::string& name){
+    if(name==""){
+        
+        std::stringstream stream;
+        stream << node_id;
+        std::string id = stream.str();
+
+        std::string new_name = "node_" + id; 
+        set_name(new_name);
+        node_id++;
+    }
+    else{
+        set_name(name);
+    }
+}
 
 node::~node(){
     for(auto child:*children){
@@ -23,7 +42,6 @@ void node::set_name(std::string new_name){
     this->name = new_name;
 }
 
-//saves pointer to child to children vector
 void node::add_child(node* child){
     this->children->push_back(child);
     nr_children++;
