@@ -1,8 +1,6 @@
 #include "node.h"
 #include <iostream>
-#include <string>
-#include <sstream>
-void create_tree_rec();
+
 
 int main(){
     /*
@@ -25,10 +23,6 @@ int main(){
     delete root; 
     */
 
-    node* new_node = new node();
-    node* new_node_2 = new node();
-    std::cout<<new_node->get_name()<<std::endl;
-    std::cout<<new_node_2->get_name()<<std::endl;
 
 
 

@@ -26,4 +26,6 @@ class node{
     void add_child(node* child);
 };
 
+void create_complete_tree(int nr_child_nodes,int tree_depth);
+
 #endif

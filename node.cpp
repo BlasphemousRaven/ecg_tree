@@ -1,22 +1,25 @@
 #include "node.h"
 #include <string>
 #include <sstream>
-#include <iostream>
 
 int node::node_id = 0;
 
 node::node(const std::string& name){
     if(name==""){
-        
+        //converts node id from int to str
         std::stringstream stream;
         stream << node_id;
         std::string id = stream.str();
-
+        
+        //sets  name to node and cur id
         std::string new_name = "node_" + id; 
         set_name(new_name);
+
+        //increments global id
         node_id++;
     }
     else{
+        //sets name to constructor parameter
         set_name(name);
     }
 }
@@ -56,4 +59,8 @@ node* node::get_child(int i){
     node* child = this->children->at(i);
     return child;
 
+}
+
+void create_complete_tree(int nr_child_nodes, int tree_depth){
+    
 }
