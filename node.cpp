@@ -1,6 +1,11 @@
 #include "node.h"
+#include <cfloat>
+#include <cstddef>
+#include <ostream>
 #include <string>
 #include <sstream>
+#include <iostream>
+
 
 int node::node_id = 0;
 
@@ -61,6 +66,22 @@ node* node::get_child(int i){
 
 }
 
-void create_complete_tree(int nr_child_nodes, int tree_depth){
+node* create_complete_tree(int nr_child_nodes, int tree_depth){
+    if (tree_depth==0) {
+        return nullptr;
+    }
+
+    node* root = new node();
+    
+    //for every child: create child and add to root
+    for(int i=0;i<nr_child_nodes;i++){
+        //somehow recursively create children
+        node* child = create_complete_tree(nr_child_nodes, tree_depth-1);
+        if (child!=nullptr) {
+            root->add_child(child);
+        }
+    }
+
+    return root;
     
 }

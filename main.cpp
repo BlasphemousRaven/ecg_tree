@@ -1,7 +1,6 @@
 #include "node.h"
 #include <iostream>
 
-
 int main(){
     /*
     node* root = new node();
@@ -23,7 +22,7 @@ int main(){
     delete root; 
     */
 
-
+    create_complete_tree(2,4);
 
 
 
