@@ -1,6 +1,4 @@
 #include "node.h"
-#include <cfloat>
-#include <cstddef>
 #include <ostream>
 #include <string>
 #include <sstream>
@@ -85,6 +83,13 @@ node* create_complete_tree(int nr_child_nodes, int tree_depth){
     return root;
     
 }
-std::ostream& operator<<(std::ostream& os,const node& node){
+
+void node::print(std::ostream& str){
+    str<<this->get_name() + "\n";
 }
 
+
+std::ostream& operator<<(std::ostream& os, node* node){
+    node->print(os);
+    return os;
+}

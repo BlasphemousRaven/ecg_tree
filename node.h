@@ -14,8 +14,9 @@ class node{
     std::vector<node*> *children = new std::vector<node*>();
 
     public:
-    friend std::ostream& operator<<(std::ostream& os,const node& node);
     virtual ~node();
+    friend std::ostream& operator<<(std::ostream& os,  node* node);
+
     node(const std::string& name="");
     std::string get_name();
     
