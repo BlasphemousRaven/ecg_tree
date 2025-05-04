@@ -2,6 +2,7 @@
 #define NODE_H
 
 #include <new>
+#include <ostream>
 #include <string>
 #include <vector>
 
@@ -13,6 +14,7 @@ class node{
     std::vector<node*> *children = new std::vector<node*>();
 
     public:
+    friend std::ostream& operator<<(std::ostream& os,const node& node);
     virtual ~node();
     node(const std::string& name="");
     std::string get_name();
@@ -24,8 +26,10 @@ class node{
     node* get_child(int i);
 
     void add_child(node* child);
+    void print(std::ostream& str);
 };
 
 node* create_complete_tree(int nr_child_nodes,int tree_depth);
+
 
 #endif

@@ -85,3 +85,6 @@ node* create_complete_tree(int nr_child_nodes, int tree_depth){
     return root;
     
 }
+std::ostream& operator<<(std::ostream& os,const node& node){
+}
+

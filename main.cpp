@@ -22,7 +22,7 @@ int main(){
     delete root; 
     */
 
-    create_complete_tree(2,4);
+    node* root = create_complete_tree(2,4);
 
 
 
