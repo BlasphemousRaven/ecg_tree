@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <iostream>
+#include <vector>
 
 
 int node::node_id = 0;
@@ -84,12 +85,25 @@ node* create_complete_tree(int nr_child_nodes, int tree_depth){
     
 }
 
-void node::print(std::ostream& str){
-    str<<this->get_name() + "\n";
+
+std::vector<node*>* node::get_children(){
+    return this->children;
+}
+
+void node::print(std::ostream& str,int depth){
+    for(int i=0;i<depth;i++){
+        std::cout<<"   ";
+    }
+
+    std::cout<<this->get_name()<<std::endl;
+
+    for(node* child: *this->get_children()){
+        child->print(str,depth+1);
+    }
 }
 
 
 std::ostream& operator<<(std::ostream& os, node* node){
-    node->print(os);
+    node->print(os,0);
     return os;
 }

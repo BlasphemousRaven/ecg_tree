@@ -27,7 +27,8 @@ class node{
     node* get_child(int i);
 
     void add_child(node* child);
-    void print(std::ostream& str);
+    void print(std::ostream& str,int depth);
+    std::vector<node*>* get_children();
 };
 
 node* create_complete_tree(int nr_child_nodes,int tree_depth);
