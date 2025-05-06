@@ -28,7 +28,9 @@ class node{
     node* get_child(int i);
 
     void add_child(node* child);
-    void print(std::ostream& str,int depth,std::set<node*> visited);
+    void print_rec(std::ostream& str,int depth,std::set<node*> visited);
+    void print_it(std::ostream& str);
+
     std::vector<node*>* get_children();
 };
 

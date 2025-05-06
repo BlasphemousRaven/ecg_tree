@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <set>
+#include <stack>
 
 int node::node_id = 1;
 
@@ -92,7 +93,7 @@ std::vector<node*>* node::get_children(){
     return this->children;
 }
 
-void node::print(std::ostream& str,int depth,std::set<node*> visited){
+void node::print_rec(std::ostream& str,int depth,std::set<node*> visited){
     for(int i=0;i<depth;i++){
         str<<"   ";
     }
@@ -102,7 +103,7 @@ void node::print(std::ostream& str,int depth,std::set<node*> visited){
     for(node* child: *this->get_children()){
         if(visited.count(child)==0){
             visited.insert(child);
-            child->print(str,depth+1,visited);
+            child->print_rec(str,depth+1,visited);
         }
         else{
             str<<"cycle detected [  ";
@@ -115,8 +116,20 @@ void node::print(std::ostream& str,int depth,std::set<node*> visited){
     }
 }
 
+void node::print_it(std::ostream& str){
+    std::stack<node*> nodes;
+    nodes.push(this);
+    while (nodes.size()!=0) {
+        node* node = nodes.top();
+        nodes.pop();
+        for(auto child:*node->get_children()){
+            nodes.push(child);
+        }
+        str<<node->get_name();
+    }
+}
 
 std::ostream& operator<<(std::ostream& os, node* node){
-    node->print(os,0,{});
+    node->print_it(os);
     return os;
 }
