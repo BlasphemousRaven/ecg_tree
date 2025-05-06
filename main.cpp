@@ -22,8 +22,16 @@ int main(){
     delete root; 
     */
 
-    node* root = create_complete_tree(2,4);
-    std::cout<<root;
+    //node* root = create_complete_tree(4,10);
+    //std::cout<<root;
+
+    node* node_1 = new node();
+    node* node_2 = new node();
+    node* node_3 = new node();
+    
+    node_1->add_child(node_2);
+    node_2->add_child(node_3);
+    node_3->add_child(node_1);
 
 
 

@@ -6,7 +6,7 @@
 #include <vector>
 
 
-int node::node_id = 0;
+int node::node_id = 1;
 
 node::node(const std::string& name){
     if(name==""){
