@@ -75,10 +75,11 @@ node* create_complete_tree(int nr_child_nodes, int tree_depth){
 
     node* root = new node();
     
-    //for every child: create child and add to root
+    //for every child: create child and add to current root
     for(int i=0;i<nr_child_nodes;i++){
-        //somehow recursively create children
+       //recursively assigns children 
         node* child = create_complete_tree(nr_child_nodes, tree_depth-1);
+        //if the child is not null it will be added to root
         if (child!=nullptr) {
             root->add_child(child);
         }
@@ -94,6 +95,7 @@ std::vector<node*>* node::get_children(){
 }
 
 void node::print_rec(std::ostream& str,int depth,std::set<node*> visited){
+    //creates indent depending depth
     for(int i=0;i<depth;i++){
         str<<"   ";
     }
@@ -101,6 +103,8 @@ void node::print_rec(std::ostream& str,int depth,std::set<node*> visited){
     str<<this->get_name()<<std::endl;
 
     for(node* child: *this->get_children()){
+        //if node has not been visited yet, it will be added to set
+        //otherwise --> cycle
         if(visited.count(child)==0){
             visited.insert(child);
             child->print_rec(str,depth+1,visited);
@@ -118,7 +122,7 @@ void node::print_rec(std::ostream& str,int depth,std::set<node*> visited){
 
 void node::print_it(std::ostream& str){
     std::stack<node*> nodes;
-
+    
     nodes.push(this);
     
     while (nodes.size()!=0) {
@@ -127,7 +131,6 @@ void node::print_it(std::ostream& str){
         for(auto child:*node->get_children()){
             nodes.push(child);
         }
-
         str<<node->get_name()<<"\n";
     }
 }
