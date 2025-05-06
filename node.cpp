@@ -118,14 +118,17 @@ void node::print_rec(std::ostream& str,int depth,std::set<node*> visited){
 
 void node::print_it(std::ostream& str){
     std::stack<node*> nodes;
+
     nodes.push(this);
+    
     while (nodes.size()!=0) {
         node* node = nodes.top();
         nodes.pop();
         for(auto child:*node->get_children()){
             nodes.push(child);
         }
-        str<<node->get_name();
+
+        str<<node->get_name()<<"\n";
     }
 }
 
