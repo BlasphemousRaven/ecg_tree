@@ -1,10 +1,11 @@
 #include "node.h"
 #include <ostream>
+#include <set>
 #include <string>
 #include <sstream>
 #include <iostream>
 #include <vector>
-
+#include <set>
 
 int node::node_id = 1;
 
@@ -26,6 +27,7 @@ node::node(const std::string& name){
         //sets name to constructor parameter
         set_name(name);
     }
+
 }
 
 node::~node(){
@@ -90,20 +92,31 @@ std::vector<node*>* node::get_children(){
     return this->children;
 }
 
-void node::print(std::ostream& str,int depth){
+void node::print(std::ostream& str,int depth,std::set<node*> visited){
     for(int i=0;i<depth;i++){
-        std::cout<<"   ";
+        str<<"   ";
     }
 
-    std::cout<<this->get_name()<<std::endl;
+    str<<this->get_name()<<std::endl;
 
     for(node* child: *this->get_children()){
-        child->print(str,depth+1);
+        if(visited.count(child)==0){
+            visited.insert(child);
+            child->print(str,depth+1,visited);
+        }
+        else{
+            str<<"cycle detected [  ";
+            for(node* node:visited){
+                
+                str<<node->get_name()<<"  ";
+            }
+            str<<"]\n";
+        }
     }
 }
 
 
 std::ostream& operator<<(std::ostream& os, node* node){
-    node->print(os,0);
+    node->print(os,0,{});
     return os;
 }

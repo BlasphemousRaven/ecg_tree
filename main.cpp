@@ -28,12 +28,14 @@ int main(){
     node* node_1 = new node();
     node* node_2 = new node();
     node* node_3 = new node();
+    node* node_4 = new node();
     
     node_1->add_child(node_2);
     node_2->add_child(node_3);
     node_3->add_child(node_1);
+    node_3->add_child(node_4);
+    
 
-
-
+    std::cout<<node_1;
     return 0;
 }

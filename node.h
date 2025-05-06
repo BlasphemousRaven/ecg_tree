@@ -5,6 +5,7 @@
 #include <ostream>
 #include <string>
 #include <vector>
+#include <set>
 
 class node{
     private:
@@ -27,7 +28,7 @@ class node{
     node* get_child(int i);
 
     void add_child(node* child);
-    void print(std::ostream& str,int depth);
+    void print(std::ostream& str,int depth,std::set<node*> visited);
     std::vector<node*>* get_children();
 };
 
