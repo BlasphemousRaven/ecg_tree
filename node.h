@@ -36,7 +36,7 @@ class node{
 
 };
 
-node* create_complete_tree(int nr_child_nodes,int tree_depth);
+node* create_complete_tree(int nr_child_nodes,int tree_depth,int current_depth=1);
 
 
 #endif
