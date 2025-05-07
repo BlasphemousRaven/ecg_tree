@@ -9,6 +9,7 @@
 #include <stack>
 
 int node::node_id = 1;
+std::set<node*> node::nodes;
 
 node::node(const std::string& name){
     if(name==""){
@@ -52,7 +53,12 @@ void node::set_name(std::string new_name){
 void node::add_child(node* child){
     this->children->push_back(child);
     nr_children++;
-    child->depth = this->depth+1;
+    if(nodes.count(child)==0){
+        child->depth = this->depth+1;
+    }
+    
+    nodes.insert(this);
+    nodes.insert(child);
 }
 
 node* node::get_child(int i){
@@ -120,53 +126,68 @@ void node::print_rec(std::ostream& str,int depth,std::set<node*> visited){
 
 void node::print_it(std::ostream& str){
     std::stack<node*> nodes;
+    std::set<node*> visited;
     
     nodes.push(this);
     
     while (nodes.size()!=0) {
         node* node = nodes.top();
+        visited.insert(node);
         nodes.pop();
         for(auto child:*node->get_children()){
-            nodes.push(child);
+            if(visited.count(child)==0){
+                nodes.push(child);
+            }
         }
+            
         for(int i=0;i<node->depth;i++){
             str<<"   ";
         }
         str<<node->get_name()<<"\n";
     }
 
-    for(auto node : detect_cycle(this)){
-        str<<"CYCLE LIST";
-        str<<node<<std::endl;
+    std::set<node*> cycle = detect_cycle(this);
+    if (!cycle.empty()) {
+        for (auto node:cycle) {
+            std::cout<<node->get_name();
+            std::cout<<" ";
+        }
+
+            std::cout<<"]"<<std::endl;
     }
+
 }
 
 //DFS for detecting cycle
 std::set<node*> detect_cycle(node* root){
     std::stack<node*> nodes;
-    nodes.push(root);
-    std::set<node*> visited = {};
+    std::set<node*> visited;
 
-    while (nodes.size()>0) {
+    nodes.push(root);
+    
+    while (nodes.size()) {
+        visited.insert(nodes.top());
         node* cur_node = nodes.top();
         nodes.pop();
-
-        if(visited.count(cur_node)>0){
-            std::cout<<"CYCLE!";
-            return visited;
-        }
         for(auto child:*cur_node->get_children()){
-            if(visited.count(child)>0)continue;
+            if(visited.count(child)){
+                std::cout<<"CYCLE DETECTED: [ ";
+                return visited;
+            }
             nodes.push(child);
         }
-        visited.insert(cur_node);
-         
+
     }
     return {};
-   
+
 }
 
+
 std::ostream& operator<<(std::ostream& os, node* node){
+    std::cout<<"-----Print Methode rekursiv------"<<std::endl;
+    node->print_rec(os,0,{});
+    std::cout<<"-----Print Methode iterativ------"<<std::endl;
+    
     node->print_it(os);
     return os;
 }

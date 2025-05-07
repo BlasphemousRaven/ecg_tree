@@ -2,8 +2,11 @@
 #include <iostream>
 
 int main(){
+    node* root = create_complete_tree(2,4);
+    std::cout<<root;
 
-    //node* root = create_complete_tree(2,4);
+    std::cout<<"-----Mit Zyklus-----"<<std::endl;
+    
     node* node_1 = new node();
     node* node_2 = new node();
     node* node_3 = new node();
@@ -14,8 +17,9 @@ int main(){
     node_3->add_child(node_4);
     node_4->add_child(node_1);
     
-    std::cout<<node_1;
+    
+    
 
-    //std::cout<<node_1;
+    std::cout<<node_1;
     return 0;
 }

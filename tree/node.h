@@ -10,6 +10,7 @@
 class node{
     private:
     static int node_id;
+    static std::set<node*> nodes;
     std::string name;
     int nr_children = 0;
     std::vector<node*> *children = new std::vector<node*>();
@@ -33,6 +34,7 @@ class node{
     void print_rec(std::ostream& str,int depth,std::set<node*> visited);
     void print_it(std::ostream& str);
     int depth = 0; 
+
 
 };
 
