@@ -32,11 +32,11 @@ class node{
     //print functions for tree output
     void print_rec(std::ostream& str,int depth,std::set<node*> visited);
     void print_it(std::ostream& str);
-    int depth= 0; 
+    int depth = 0; 
 
 };
 
 node* create_complete_tree(int nr_child_nodes,int tree_depth,int current_depth=1);
-
+std::set<node*> detect_cycle(node* root);
 
 #endif

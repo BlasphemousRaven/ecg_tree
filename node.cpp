@@ -134,6 +134,34 @@ void node::print_it(std::ostream& str){
         }
         str<<node->get_name()<<"\n";
     }
+
+    for(auto node : detect_cycle(this)){
+        std::cout<<node<<std::endl;
+    }
+}
+
+//DFS for detecting cycle
+std::set<node*> detect_cycle(node* root){
+    std::stack<node*> nodes;
+    nodes.push(root);
+    std::set<node*> visited = {};
+
+    while (nodes.size()>0) {
+        node* cur_node = nodes.top();
+        nodes.pop();
+
+        if(visited.count(cur_node)>0){
+            std::cout<<"CYCLE!";
+            return visited;
+        }
+        for(auto child:*cur_node->get_children()){
+            nodes.push(child);
+        }
+        visited.insert(cur_node);
+         
+    }
+    return {};
+   
 }
 
 std::ostream& operator<<(std::ostream& os, node* node){
