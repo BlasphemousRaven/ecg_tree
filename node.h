@@ -32,6 +32,7 @@ class node{
     //print functions for tree output
     void print_rec(std::ostream& str,int depth,std::set<node*> visited);
     void print_it(std::ostream& str);
+    int depth= 0; 
 
 };
 

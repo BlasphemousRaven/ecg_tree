@@ -2,28 +2,26 @@
 #include <iostream>
 
 int main(){
-    /*
+    
     node* root = new node();
     node* right_child = new node("right_child");
     node* left_child = new node("left_child");
-    
+    node* new_child = new node("idk");
+
     root->add_child(right_child);
     root->add_child(left_child);
-
-    std::cout<<root->get_name();
-    std::cout<<right_child->get_name();
-    std::cout<<left_child->get_name();
-   
-
+    right_child->add_child(new_child);
+    std::cout<<root;
+    
     //deletes children
-    root->~node();
-    int a = root->get_nr_children();
+    //root->~node();
+    //int a = root->get_nr_children();
     //deletes node
     delete root; 
-    */
+    
 
-    node* root = create_complete_tree(2,4);
-    std::cout<<root;
+    //node* root = create_complete_tree(2,4);
+    //std::cout<<root;
 
     
 

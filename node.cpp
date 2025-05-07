@@ -55,6 +55,7 @@ void node::set_name(std::string new_name){
 void node::add_child(node* child){
     this->children->push_back(child);
     nr_children++;
+    child->depth = this->depth+1;
 }
 
 node* node::get_child(int i){
@@ -130,6 +131,9 @@ void node::print_it(std::ostream& str){
         nodes.pop();
         for(auto child:*node->get_children()){
             nodes.push(child);
+        }
+        for(int i=0;i<node->depth;i++){
+            str<<"   ";
         }
         str<<node->get_name()<<"\n";
     }
