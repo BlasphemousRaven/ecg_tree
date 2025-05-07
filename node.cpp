@@ -65,19 +65,18 @@ node* node::get_child(int i){
     return child;
 
 }
-//creates a complete tree
+
 node* create_complete_tree(int nr_child_nodes, int tree_depth,int current_depth){
     if (tree_depth==0) {
         return nullptr;
     }
 
     node* root = new node();
-    //assigns current depth to node (indentation purpose in interative method)
     root->depth = current_depth;
     
     //for every child: create child and add to current root
     for(int i=0;i<nr_child_nodes;i++){
-        //recursively assigns children 
+       //recursively assigns children 
         node* child = create_complete_tree(nr_child_nodes, tree_depth-1,current_depth+1);
         //if the child is not null it will be added to root
         if (child!=nullptr) {
@@ -94,7 +93,7 @@ std::vector<node*>* node::get_children(){
 }
 
 void node::print_rec(std::ostream& str,int depth,std::set<node*> visited){
-    //creates indent depending on depth
+    //creates indent depending depth
     for(int i=0;i<depth;i++){
         str<<"   ";
     }
