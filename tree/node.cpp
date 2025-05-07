@@ -136,7 +136,8 @@ void node::print_it(std::ostream& str){
     }
 
     for(auto node : detect_cycle(this)){
-        std::cout<<node<<std::endl;
+        str<<"CYCLE LIST";
+        str<<node<<std::endl;
     }
 }
 
@@ -155,6 +156,7 @@ std::set<node*> detect_cycle(node* root){
             return visited;
         }
         for(auto child:*cur_node->get_children()){
+            if(visited.count(child)>0)continue;
             nodes.push(child);
         }
         visited.insert(cur_node);

@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/raven/abgabe_ecg/build/cmake_install.cmake",
+		"/home/raven/abgabe_ecg/build/tree/cmake_install.cmake",
+		"/home/raven/abgabe_ecg/build/ecg_tree/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

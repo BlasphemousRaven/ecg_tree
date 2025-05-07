@@ -3,8 +3,6 @@
 
 int main(){
 
-    
-
     //node* root = create_complete_tree(2,4);
     node* node_1 = new node();
     node* node_2 = new node();

@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/ecg_tree.dir/link.d CMakeFiles/ecg_tree.dir/ecg_tree.cpp.o -o ecg_tree  ../tree/libtree.a
